@@ -24,18 +24,18 @@ const predictionDetailsPage = () => {
   const cardData = [
     {
       id: 1,
-      name: "Product 1",
-      weight: 5
+      name: "Are whales smarter than dolphines?",
+      weight: 54.32
     },
     {
       id: 2,
-      name: "Product 2",
-      weight: 8
+      name: "Is there going to be new Ice Age",
+      weight: 103.05
     },
     {
       id: 3,
-      name: "Product 3",
-      weight: 3
+      name: "Is the thing will happend in 2 hours?",
+      weight: 34.128
     }
   ];
 
@@ -47,7 +47,7 @@ const predictionDetailsPage = () => {
       <br />
       <br />
       <div className="flex flex-col items-center justify-center">
-        <div className="grid grid-cols-3 items-center justify-center divide-x">
+        <div className="grid grid-cols-3 items-center justify-center divide-x divide-slate-600">
           <div className="flex flex-col items-center px-4 justify-center gap-1">
             <span className="text-2xl font-bold">{`${23}`}</span>
             <span>{`Tokens to win`}</span>
@@ -66,7 +66,7 @@ const predictionDetailsPage = () => {
       </div>
       <br />
       <br />
-      <div className="flex flex-col items-center justify-center">
+      <div className="flex flex-col items-center justify-center gap-3">
         <h2 className="text-3xl font-bold mb-2">
             Answers
         </h2>

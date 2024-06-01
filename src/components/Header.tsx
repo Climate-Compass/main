@@ -20,7 +20,7 @@ const navigation: NavigationType = [
   },
   {
     name: "Vote",
-    path: "/voting",
+    path: "/proposals",
   },
   {
     name: "Predictions",
