@@ -1,12 +1,19 @@
+'use client';
+import React, { useEffect, useState } from 'react';
+import { Challenge } from "@/types/types";
+import { useGetAllChallengeNames } from "../../hooks/useGetAllChallengeNames";
+import { useGetChallengeDetails } from "../../hooks/useGetAllChallngeDetails";
 import Link from "next/link";
-import React from "react";
 
 const ProposalTable: React.FC = () => {
-  const proposals = [
-    { name: "Proposal 1", id: "1", endDate: "2024-06-01", weight: "123.23" },
-    { name: "Proposal 2", id: "2", endDate: "2024-07-15", weight: "3.222" },
-    { name: "Proposal 3", id: "3", endDate: "2024-08-20", weight: "870.003" },
-  ];
+  const { data: challengeNames } = useGetAllChallengeNames();
+ 
+
+  const [challenges, setChallenges] = useState<Challenge[]>([]);
+
+  const challengeDetails = useGetChallengeDetails(challengeNames ?? []);
+
+  console.info('details ' + challengeDetails);
 
   return (
     <div className="flex flex-col">
@@ -17,29 +24,27 @@ const ProposalTable: React.FC = () => {
             <div className="min-w-full divide-y divide-gray-200">
               <div className="grid items-center justify-between grid-cols-3 px-6 py-4">
                 <div className="font-medium text-slate-300">Name</div>
-                <div className="font-medium text-slate-300 text-center">
-                  End date
-                </div>
-                <div className="font-medium text-slate-300 text-right">
-                  Weight
-                </div>
+                <div className="font-medium text-slate-300 text-center">End date</div>
+                <div className="font-medium text-slate-300 text-right">Weight</div>
               </div>
               <div className="bg-white divide-y rounded-lg divide-gray-200">
-                {proposals.map((proposal) => (
-                  <Link
-                    href={`/predictions/${proposal.id}`}
-                    className="grid grid-cols-3 px-6 py-4"
-                    key={proposal.id}
-                  >
-                    <div className="text-gray-900">{proposal.name}</div>
-                    <div className="text-gray-900 text-center">
-                      {proposal.endDate}
-                    </div>
-                    <div className="text-gray-900 text-right">
-                      {proposal.weight}
-                    </div>
-                  </Link>
-                ))}
+                {challenges.length === 0 ? (
+                  <span className="flex flex-row p4 items-center justify-center text-gray-900 px-6 py-4">No challenges found</span>
+                ) : (
+                  challenges.map((challenge, index) => (
+                    <Link
+                      href={`/predictions/${challenge.name}`}
+                      className="grid grid-cols-3 px-6 py-4"
+                      key={index}
+                    >
+                      <div className="text-gray-900">{challenge.name}</div>
+                      <div className="text-gray-900 text-center">
+                        {new Date(challenge.lastExecutionTime * 1000).toLocaleDateString()}
+                      </div>
+                      <div className="text-gray-900 text-right">{challenge.totalFunds}</div>
+                    </Link>
+                  ))
+                )}
               </div>
             </div>
           </div>
