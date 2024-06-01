@@ -1,15 +1,23 @@
-import { useReadContract } from 'wagmi';
+import { useReadContracts } from 'wagmi';
 import { abiClimatCompass } from '../abi/abi';
 import { contractAddress } from '@/config/contract';
 
-export const useGetChallengeDetails = (challengeName: string) => {
-  const { data, isError, isLoading } = useReadContract({
-    address: contractAddress,
-    abi: abiClimatCompass,
-    functionName: 'challenges',
-    args: [challengeName],
-    // watch: true,
+export const useGetChallengeDetails = (challengeNames: string[]) => {
+
+  const contracts = challengeNames.map((name) => {
+    return {
+      address: contractAddress,
+      abi: abiClimatCompass,
+      functionName: 'challenges',
+      args: [name],
+    }
   });
 
-  return { data, isError, isLoading };
+  const { data, isError, isLoading } = useReadContracts({
+    contracts,
+  });
+
+  return [
+    data,
+  ];
 };

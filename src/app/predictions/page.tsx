@@ -6,26 +6,14 @@ import { useGetChallengeDetails } from "../../hooks/useGetAllChallngeDetails";
 import Link from "next/link";
 
 const ProposalTable: React.FC = () => {
-  const { data: challengeNames, isError, isLoading } = useGetAllChallengeNames();
+  const { data: challengeNames } = useGetAllChallengeNames();
+ 
+
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
-  useEffect(() => {
-    const fetchChallenges = async () => {
-      if (challengeNames && challengeNames.length > 0) {
-        const challengeDetailsPromises = challengeNames.map((name: string) =>
-          useGetChallengeDetails(name)
-        );
-        const challengeDetails = await Promise.all(challengeDetailsPromises);
-        setChallenges(challengeDetails.map(({ data }) => data as Challenge));
-        console.log(challengeDetails);
-      }
-    };
+  const challengeDetails = useGetChallengeDetails(challengeNames ?? []);
 
-    fetchChallenges();
-  }, [challengeNames]);
-
-  if (isLoading) return <div>Loading...</div>;
-  if (isError) return <div>Error loading challenges</div>;
+  console.info('details ' + challengeDetails);
 
   return (
     <div className="flex flex-col">
