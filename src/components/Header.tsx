@@ -52,8 +52,8 @@ const Header: React.FC<HeaderType> = () => {
             </Link>
           ))}
         </div>
+        <w3m-button />
         <div className="md:hidden flex items-center gap-2">
-          <w3m-button />
           <button
             onClick={toggleMenu}
             className="text-white focus:outline-none"

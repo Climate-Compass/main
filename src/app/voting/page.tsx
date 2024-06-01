@@ -24,6 +24,11 @@ const page: React.FC<pageType> = () => {
             "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
             "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
             "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
+            "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
+            "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
+            "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
+            "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
+            "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
           ]}
           stake={123.34}
           title="Vote for 👍"
