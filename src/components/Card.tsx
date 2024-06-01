@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import React from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import copyIcon from "../../public/copy-icon.svg";
 
@@ -11,8 +11,18 @@ type CardType = {
 };
 
 const Card: React.FC<CardType> = ({ title, addresses, stake }) => {
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleOpenModal = () => {
+    setIsModalOpen(true);
+  };
+
+  const handleCloseModal = () => {
+    setIsModalOpen(false);
+  };
+
   return (
-    <div className="flex flex-col w-full rounded-lg bg-slate-700 shadow-md mb-4">
+    <div className="relative flex flex-col w-full rounded-lg bg-slate-700 shadow-md mb-4">
       <div className="flex flex-row p-4 justify-between items-center mb-4">
         <div className="flex flex-row gap-2 items-center">
           <button className="px-3 py-2 bg-[#5773FF] w-[136px] text-white rounded-lg hover:bg-[#3c5cfe] transition duration-300">
@@ -54,9 +64,36 @@ const Card: React.FC<CardType> = ({ title, addresses, stake }) => {
       </div>
       <div className="flex flex-row justify-center items-center p-4 mt-4">
         {addresses.length > 3 ? (
-          <button className="px-3 py-2 bg-slate-600 text-white rounded-lg hover:bg-[#3c5cfe] transition duration-300">{`View all (${addresses.length})`}</button>
+          <button
+            onClick={handleOpenModal}
+            className="px-3 py-2 bg-slate-600 text-white rounded-lg hover:bg-[#3c5cfe] transition duration-300"
+          >
+            {`View all (${addresses.length})`}
+          </button>
         ) : null}
       </div>
+      {isModalOpen && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+          <div className="bg-white p-6 rounded-lg shadow-lg w-3/4 max-h-[80vh] overflow-y-auto">
+            <h2 className="text-2xl font-bold mb-4">All Addresses</h2>
+            <button
+              onClick={handleCloseModal}
+              className="absolute top-4 right-4 text-gray-500 hover:text-gray-700"
+            >
+              Close
+            </button>
+            <div className="divide-y divide-gray-300">
+              {addresses.map((address, index) => (
+                <div key={index} className="py-2">
+                  <Link href={'/'} className="block text-gray-800 hover:text-blue-600">
+                    {address}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

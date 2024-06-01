@@ -15,8 +15,8 @@ const navigation: NavigationType = [
     path: "/",
   },
   {
-    name: "Governance",
-    path: "/",
+    name: "Create proposal",
+    path: "/create-proposal",
   },
   {
     name: "Vote",
@@ -52,7 +52,7 @@ const Header: React.FC<HeaderType> = () => {
             </Link>
           ))}
         </div>
-        <div className="md:hidden flex items-center">
+        <div className="md:hidden flex items-center gap-2">
           <w3m-button />
           <button
             onClick={toggleMenu}
@@ -83,6 +83,7 @@ const Header: React.FC<HeaderType> = () => {
         <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
           {navigation.map((navItem, index) => (
             <Link
+              onClick={() => setIsOpen(!isOpen)}
               key={index}
               href={navItem.path}
               className="block px-3 py-2 rounded-md text-base font-medium"
