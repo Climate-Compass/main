@@ -22,6 +22,10 @@ const navigation: NavigationType = [
     name: "Vote",
     path: "/voting",
   },
+  {
+    name: "Predictions",
+    path: "/predictions",
+  },
 ];
 
 const Header: React.FC<HeaderType> = () => {
