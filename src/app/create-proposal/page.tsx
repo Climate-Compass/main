@@ -20,6 +20,8 @@ const CreateProposal: React.FC = () => {
     console.log(data);
   };
 
+//   const createProposal = useCreateProposal();
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
