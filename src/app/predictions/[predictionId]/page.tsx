@@ -7,17 +7,17 @@ const predictionDetailsPage = () => {
   const cardData = [
     {
       id: 1,
-      name: "Are whales smarter than dolphines?",
+      name: "Increase",
       weight: 54.32,
     },
     {
       id: 2,
-      name: "Is there going to be new Ice Age",
+      name: "Decrease",
       weight: 103.05,
     },
     {
       id: 3,
-      name: "Is the thing will happend in 2 hours?",
+      name: "Similar to Average",
       weight: 34.128,
     },
   ];
@@ -27,7 +27,7 @@ const predictionDetailsPage = () => {
       <br />
       <br />
       <h1 className="text-3xl font-bold mb-2 text-center">
-        Is there going to be another heatwave in Paris?
+        Is there going to be another heatwave in Paris by 2025?
       </h1>
       <br />
       <br />

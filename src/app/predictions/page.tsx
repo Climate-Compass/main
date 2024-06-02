@@ -6,16 +6,14 @@ import { useGetChallengeDetails } from "../../hooks/useGetAllChallngeDetails";
 import Link from "next/link";
 
 const ProposalTable: React.FC = () => {
+  const fakeChallenges = [{
+    '': 23,
+  }]
   const { data: challengeNames } = useGetAllChallengeNames();
- 
 
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
   const challengeDetails = useGetChallengeDetails(challengeNames ?? []) || [];
-
-
-
-  console.info('details ' + challengeDetails);
 
   return (
     <div className="flex flex-col">
@@ -24,21 +22,20 @@ const ProposalTable: React.FC = () => {
         <div className="inline-block min-w-full align-middle">
           <div className="overflow-hidden shadow-md">
             <div className="min-w-full divide-y divide-gray-200">
-              <div className="grid items-center justify-between grid-cols-3 px-6 py-4">
+              <div className="grid items-center justify-between grid-cols-2 px-6 py-4">
                 <div className="font-medium text-slate-300">Name</div>
-                <div className="font-medium text-slate-300 text-right">Prize ($CLIMATE)</div>
+                <div className="font-medium text-slate-300 text-right">Prize</div>
               </div>
               <div className="bg-white divide-y rounded-lg divide-gray-200">
                 {challengeDetails && challengeDetails.length === 0 ? (
                   <span className="flex flex-row p4 items-center justify-center text-gray-900 px-6 py-4">No challenges found</span>
                 ) : (
-                  challengeDetails.map((challenge, index) => (
+                  challengeDetails.map((challenge: any, index) => (
                     <Link
                       href={`/predictions/${challenge.result[0]}`}
                       className="grid grid-cols-3 px-6 py-4"
                       key={index}
                     >
-                      {console.log(challenge.result)}
                       <div className="text-gray-900">{challenge.result[0]}</div>
                       {/*<div className="text-gray-900 text-center">
                         {/*new Date(challenge.lastExecutionTime * 1000).toLocaleDateString()}
