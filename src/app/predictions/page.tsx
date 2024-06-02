@@ -11,7 +11,9 @@ const ProposalTable: React.FC = () => {
 
   const [challenges, setChallenges] = useState<Challenge[]>([]);
 
-  const challengeDetails = useGetChallengeDetails(challengeNames ?? []);
+  const challengeDetails = useGetChallengeDetails(challengeNames ?? []) || [];
+
+
 
   console.info('details ' + challengeDetails);
 
@@ -24,24 +26,24 @@ const ProposalTable: React.FC = () => {
             <div className="min-w-full divide-y divide-gray-200">
               <div className="grid items-center justify-between grid-cols-3 px-6 py-4">
                 <div className="font-medium text-slate-300">Name</div>
-                <div className="font-medium text-slate-300 text-center">End date</div>
-                <div className="font-medium text-slate-300 text-right">Weight</div>
+                <div className="font-medium text-slate-300 text-right">Prize ($CLIMATE)</div>
               </div>
               <div className="bg-white divide-y rounded-lg divide-gray-200">
-                {challenges.length === 0 ? (
+                {challengeDetails && challengeDetails.length === 0 ? (
                   <span className="flex flex-row p4 items-center justify-center text-gray-900 px-6 py-4">No challenges found</span>
                 ) : (
-                  challenges.map((challenge, index) => (
+                  challengeDetails.map((challenge, index) => (
                     <Link
-                      href={`/predictions/${challenge.name}`}
+                      href={`/predictions/${challenge.result[0]}`}
                       className="grid grid-cols-3 px-6 py-4"
                       key={index}
                     >
-                      <div className="text-gray-900">{challenge.name}</div>
-                      <div className="text-gray-900 text-center">
-                        {new Date(challenge.lastExecutionTime * 1000).toLocaleDateString()}
-                      </div>
-                      <div className="text-gray-900 text-right">{challenge.totalFunds}</div>
+                      {console.log(challenge.result)}
+                      <div className="text-gray-900">{challenge.result[0]}</div>
+                      {/*<div className="text-gray-900 text-center">
+                        {/*new Date(challenge.lastExecutionTime * 1000).toLocaleDateString()}
+                      </div>*/}
+                      <div className="text-gray-900 text-right">{challenge.result[1].toString()}</div>
                     </Link>
                   ))
                 )}

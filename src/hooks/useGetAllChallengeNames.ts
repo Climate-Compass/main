@@ -3,7 +3,7 @@ import { abiClimatCompass } from '../abi/abi';
 import { contractAddress } from '@/config/contract';
 
 export const useGetAllChallengeNames = () => {
-  const { data, isError, isLoading } = useReadContract({
+  const information = useReadContract({
     address: contractAddress,
     abi: abiClimatCompass,
     functionName: 'getAllChallengeNames',
@@ -12,6 +12,12 @@ export const useGetAllChallengeNames = () => {
     }
     // watch: true,
   });
+
+
+  const { data, isError, isLoading } = information
+
+  console.log(data)
+
 
   return { data: data as string[], isError, isLoading };
 };
