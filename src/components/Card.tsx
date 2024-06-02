@@ -9,9 +9,11 @@ type CardType = {
   title: string;
   stake: number;
   addresses: string[];
+  disabled: boolean;
+  onClick: () => void;
 };
 
-const Card: React.FC<CardType> = ({ title, addresses, stake }) => {
+const Card: React.FC<CardType> = ({ title, addresses, stake, onClick, disabled }) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleOpenModal = () => {
@@ -26,7 +28,7 @@ const Card: React.FC<CardType> = ({ title, addresses, stake }) => {
     <div className="relative flex flex-col w-full rounded-lg bg-slate-700 shadow-md mb-4">
       <div className="flex flex-row p-4 justify-between items-center mb-4">
         <div className="flex flex-row gap-2 items-center">
-          <button className="px-3 py-2 bg-[#5773FF] w-[136px] text-white rounded-lg hover:bg-[#3c5cfe] transition duration-300">
+          <button disabled={disabled} onClick={onClick} className="px-3 py-2 bg-[#5773FF] w-[136px] text-white rounded-lg hover:bg-[#3c5cfe] transition duration-300">
             {title}
           </button>
         </div>

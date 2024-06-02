@@ -8,21 +8,34 @@ import Link from "next/link";
 type FormValues = {
   title: string;
   overview: string;
+  action?: string; // Add action type
 };
 
 const CreateProposal: React.FC = () => {
-  const {
-    register,
-    handleSubmit,
-    formState: { errors },
-  } = useForm<FormValues>();
+  const { register, handleSubmit, formState: { errors } } = useForm<FormValues>();
+
   const onSubmit: SubmitHandler<FormValues> = (data) => {
-    console.log(data);
+    // Get the existing proposals from local storage
+    const existingProposals = JSON.parse(localStorage.getItem('proposals') || '[]');
+    
+    // Create a new proposal object
+    const newProposal = {
+      title: data.title,
+      overview: data.overview,
+      action: selectedAction,
+    };
+
+    // Add the new proposal to the existing proposals
+    existingProposals.push(newProposal);
+
+    // Save the updated proposals back to local storage
+    localStorage.setItem('proposals', JSON.stringify(existingProposals));
+
+    console.log('Proposal submitted:', newProposal);
   };
 
-//   const createProposal = useCreateProposal();
-
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [selectedAction, setSelectedAction] = useState<string | null>(null);
 
   const handleOpenModal = () => {
     setIsModalOpen(true);
@@ -32,11 +45,14 @@ const CreateProposal: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const handleActionSelect = (action: string) => {
+    setSelectedAction(action);
+    setIsModalOpen(false);
+  };
+
   const actions = [
-    "Action 1",
-    "Action 2",
-    "Action 3",
-    // Add more actions as needed
+    "Transfer",
+    "Custom action",
   ];
 
   return (
@@ -118,6 +134,7 @@ const CreateProposal: React.FC = () => {
                   {actions.map((action, index) => (
                     <button
                       key={index}
+                      onClick={() => handleActionSelect(action)}
                       className="block p-3 w-full text-left text-gray-800 hover:text-blue-600"
                     >
                       {action}
@@ -125,6 +142,12 @@ const CreateProposal: React.FC = () => {
                   ))}
                 </div>
               </div>
+            </div>
+          )}
+          {selectedAction && (
+            <div className="mt-2">
+              <span className="text-sm font-semibold">Selected Action: </span>
+              <span className="text-sm text-gray-700">{selectedAction}</span>
             </div>
           )}
         </div>
