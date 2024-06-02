@@ -20,7 +20,7 @@ const AnswerCard: React.FC<AnswerCardProps> = ({ name, weight, onSubmit }) => {
   };
 
   return (
-    <div className="bg-white shadow-md w-full rounded-lg overflow-hidden">
+    <div className="bg-white shadow-md w-full max-w-[592px] rounded-lg overflow-hidden">
       <div className="px-6 py-4">
         <h2 className="text-xl text-gray-600 font-semibold mb-2">{name}</h2>
         <p className="text-gray-600 text-sm">Weight: {weight}</p>

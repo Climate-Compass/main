@@ -158,12 +158,6 @@ export default function Home() {
                 various rights and allows specific actions. Predetermined supply
                 & staking rewards (future) might aid stability.
               </p>
-              <a
-                href="#"
-                className="inline-block px-6 py-3 bg-white text-blue-500 rounded-full font-bold transition duration-300 hover:bg-blue-200 hover:text-blue-600"
-              >
-                Learn More
-              </a>
             </div>
             <div className="bg-white bg-opacity-20 rounded-xl px-6 py-8">
               <h3 className="text-xl font-bold mb-4">
@@ -174,12 +168,6 @@ export default function Home() {
                 marketplace. Data providers create them when tokenizing their
                 data for sharing.
               </p>
-              <a
-                href="#"
-                className="inline-block px-6 py-3 bg-white text-blue-500 rounded-full font-bold transition duration-300 hover:bg-blue-200 hover:text-blue-600"
-              >
-                Learn More
-              </a>
             </div>
           </div>
         </div>
@@ -200,7 +188,7 @@ export default function Home() {
             positive environmental attention.
           </p>
           <a
-            href="#"
+            href="/proposals"
             className="inline-block px-8 py-4 bg-blue-500 text-white rounded-full font-bold transition duration-300 hover:bg-blue-600 hover:text-white"
           >
             Vote!

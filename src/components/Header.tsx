@@ -1,6 +1,8 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
+import logo from '../../public/logo.png';
+import Image from "next/image";
 
 type HeaderType = {};
 
@@ -10,10 +12,6 @@ type NavigationType = {
 }[];
 
 const navigation: NavigationType = [
-  {
-    name: "Dashboard",
-    path: "/",
-  },
   {
     name: "Create proposal",
     path: "/create-proposal",
@@ -39,8 +37,10 @@ const Header: React.FC<HeaderType> = () => {
     <header className={`fixed top-0 z-10 backdrop-blur-sm w-full 
     ${!isOpen && `shadow-md`}`}>
       <div className="lg:container mx-auto flex items-center justify-between p-4 lg:px-0">
-        <div className="flex items-center content-center gap-4">
-          <Link href={"/"}>Climate Compass!</Link>
+        <div className="flex items-center content-center bg-slate-100 gap-4 rounded-md">
+          <Link href={"/"}>
+            <Image alt="logo" src={logo} width={50} height={50} />
+          </Link>
         </div>
         <div className="hidden md:flex items-center content-center gap-4">
           {navigation.map((navItem, index) => (
