@@ -1,19 +1,29 @@
+'use client'
+import React, { useState } from "react";
 import Card from "@/components/Card";
-import React from "react";
 
-type pageType = {};
+const Page: React.FC = () => {
+  const [voteForClicked, setVoteForClicked] = useState(false);
+  const [voteAgainstClicked, setVoteAgainstClicked] = useState(false);
 
-const page: React.FC<pageType> = () => {
+  const handleVoteForClick = () => {
+    setVoteForClicked(true);
+    setVoteAgainstClicked(false);
+  };
+
+  const handleVoteAgainstClick = () => {
+    setVoteAgainstClicked(true);
+    setVoteForClicked(false);
+  };
+
   return (
     <div className="flex flex-col">
-      <h1 className="text-3xl font-bold">Proposal name</h1>
+      <h1 className="text-3xl font-bold">Increase Funding for Renewable Energy</h1>
       <p className="py-2 max-w-5xl">
-        Lorem ipsum dolor sit amet consectetur, adipisicing elit. Itaque velit
-        eos perferendis atque accusamus possimus non, tempore, unde neque
-        maxime, ex alias quae doloribus vel est. Quo debitis autem tempora!
+        Allocate additional resources to renewable energy projects to combat climate change.
       </p>
       <div className="flex flex-row gap-1">
-        <span className="font-thin">Executed May 27th, 2024</span>
+        <span className="font-thin">Executed: 2024-05-01</span>
       </div>
       <br />
       <div className="sm:flex sm:flex-col lg:grid grid-cols-2 w-full gap-[16px]">
@@ -31,7 +41,9 @@ const page: React.FC<pageType> = () => {
             "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
           ]}
           stake={123.34}
-          title="Vote for 👍"
+          title={voteForClicked ? "Voted for 👍" : "Vote for 👍"}
+          onClick={handleVoteForClick}
+          disabled={voteForClicked || voteAgainstClicked}
         />
         <Card
           addresses={[
@@ -42,10 +54,13 @@ const page: React.FC<pageType> = () => {
             "0xc55DB377c8539482E8bC40bBea808900DdeB05f1",
           ]}
           stake={12.34}
-          title="Vote against 👎"
+          title={voteAgainstClicked ? "Voted against 👎" : "Vote against 👎"}
+          onClick={handleVoteAgainstClick}
+          disabled={voteForClicked || voteAgainstClicked}
         />
       </div>
     </div>
   );
 };
-export default page;
+
+export default Page;

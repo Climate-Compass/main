@@ -1,12 +1,22 @@
+'use client'
 import Link from "next/link";
-import React from "react";
+import React, { useEffect } from "react";
 
 const ProposalTable: React.FC = () => {
-  const proposals = [
-    { name: "Proposal 1", id: "1", date: "2024-06-01", votedFor: 43, votedAgainst: 2 },
-    { name: "Proposal 2", id: "2", date: "2024-07-15", votedFor: 3, votedAgainst: 34 },
-    { name: "Proposal 3", id: "3", date: "2024-08-20", votedFor: 104, votedAgainst: 28 },
+
+  const proposals =  [
+    { name: "Increase Funding for Renewable Energy", id: "1", date: "2024-06-01", votedFor: 43, votedAgainst: 2, description: "Allocate additional resources to renewable energy projects to combat climate change." },
+    { name: "Reduce Carbon Emissions by 50%", id: "2", date: "2024-07-15", votedFor: 3, votedAgainst: 34, description: "Implement stricter regulations to cut carbon emissions in half by 2030." },
+    { name: "Expand Public Transportation", id: "4", date: "2024-09-05", votedFor: 67, votedAgainst: 15, description: "Increase the reach and efficiency of public transportation to reduce traffic congestion and pollution." },
+    { name: "Ban Single-Use Plastics", id: "5", date: "2024-10-10", votedFor: 22, votedAgainst: 8, description: "Prohibit the use of single-use plastics to decrease environmental pollution." },
+    { name: "Subsidize Electric Vehicles", id: "7", date: "2024-12-01", votedFor: 45, votedAgainst: 12, description: "Provide financial incentives for purchasing electric vehicles to reduce fossil fuel dependency." },
+    { name: "Expand Broadband Access to Rural Areas", id: "9", date: "2025-02-28", votedFor: 77, votedAgainst: 30, description: "Improve internet infrastructure in rural areas to provide high-speed broadband access." },
+    { name: "Implement Paid Parental Leave", id: "10", date: "2025-03-20", votedFor: 54, votedAgainst: 18, description: "Introduce paid parental leave policies to support families and improve work-life balance." }
   ];
+
+  useEffect(() => {
+    localStorage.setItem('proposals', JSON.stringify(proposals))
+  }, [])
 
   return (
     <div className="flex flex-col">
