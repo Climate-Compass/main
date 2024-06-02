@@ -377,7 +377,7 @@ import { contractAddress } from '@/config/contract';
 export const useGetChallengeDetails = (challengeNames: string[]) => {
   console.log('test', challengeNames)
 
-  const contracts = challengeNames.map((name) => {
+  const contracts: any[] = challengeNames.map((name) => {
     console.log(name)
     return {
       address: contractAddress,
@@ -390,10 +390,7 @@ export const useGetChallengeDetails = (challengeNames: string[]) => {
     }
   });
 
-  const information = useReadContracts({
-    contracts,
-  });
-
+  const information = useReadContracts(contracts as any);
   const firstOne = challengeNames[0]
 
   const information2 = useReadContract({

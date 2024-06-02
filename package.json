@@ -16,7 +16,8 @@
     "react-dom": "^18",
     "react-hook-form": "^7.51.5",
     "viem": "^2.13.2",
-    "wagmi": "^2.9.8"
+    "wagmi": "^2.9.8",
+    "web3-utils": "^4.3.0"
   },
   "devDependencies": {
     "@types/node": "^20",

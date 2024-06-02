@@ -183,7 +183,7 @@ export default function Home() {
             CLIMATE COMPASS is designed to be a versatile ecosystem where users
             can contribute climate data, engage in prediction markets,
             participate in governance, and earn rewards. By understanding the
-            key aspects of tokenomics, users can fully harness the platform's
+            key aspects of tokenomics, users can fully harness the platform&aposs
             capabilities and contribute to its ongoing success while driving
             positive environmental attention.
           </p>
